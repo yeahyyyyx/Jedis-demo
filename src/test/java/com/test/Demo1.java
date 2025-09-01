@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import redis.clients.jedis.Jedis;
 import org.junit.jupiter.api.Test; // 改为导入JUnit 5的Test注解
 
+import java.util.Map;
+
 public class Demo1 {
     private Jedis jedis;
     @BeforeEach
@@ -29,6 +31,13 @@ public class Demo1 {
         System.out.println("result = " + result);
         String name = jedis.get("name");
         System.out.println("name = " + name);
+    }
+    @Test
+    public void TestHash() {
+        jedis.hset("user:1", "name", "Jack");
+        jedis.hset("user:1", "age", "18");
+        Map<String, String> map =jedis.hgetAll("user:1");
+        System.out.println("map = " + map);
     }
     @AfterEach
     public void tearDown() {
