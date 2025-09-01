@@ -1,10 +1,11 @@
 package com.test;
 
+import com.yyx.JedisConnectionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import redis.clients.jedis.Jedis;
-import org.junit.jupiter.api.Test; // 改为导入JUnit 5的Test注解
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
@@ -13,7 +14,8 @@ public class Demo1 {
     @BeforeEach
     public void initRedisConnection() {
         // 1. 建立 Redis 连接
-        jedis = new Jedis("192.168.195.128", 6379);
+//        jedis = new Jedis("192.168.195.128", 6379);
+        jedis = JedisConnectionFactory.getJedis();
         // 2. 设置密码
         jedis.auth("123321"); // 例如：jedis.auth("123456")
         // 3.选择 Redis 数据库
