@@ -21,5 +21,11 @@ public class Demo1 {
         String ping = jedis.ping();
         System.out.println(ping);
     }
-
+    @Test
+    public void TestString() {
+        String result = jedis.set("name", "yyx");
+        System.out.println("result = " + result);
+        String name = jedis.get("name");
+        System.out.println("name = " + name);
+    }
 }
