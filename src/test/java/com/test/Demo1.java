@@ -1,5 +1,7 @@
 package com.test;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import redis.clients.jedis.Jedis;
 import org.junit.jupiter.api.Test; // 改为导入JUnit 5的Test注解
@@ -27,5 +29,11 @@ public class Demo1 {
         System.out.println("result = " + result);
         String name = jedis.get("name");
         System.out.println("name = " + name);
+    }
+    @AfterEach
+    public void tearDown() {
+        if (jedis != null) {
+            jedis.close();
+        }
     }
 }
